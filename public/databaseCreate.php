@@ -9,10 +9,3 @@ $pdo->exec("CREATE TABLE user (
     password TEXT
 )");
 
-$pdo->exec("CREATE TABLE telephone (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    number TEXT,
-    userEmail INTEGER,
-    FOREIGN KEY(userEmail) REFERENCES user(email)
-)");
-

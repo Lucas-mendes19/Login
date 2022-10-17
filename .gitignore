@@ -1,5 +1,4 @@
 vendor/
 *.sqlite
 .vscode
-.env
 env.txt

@@ -12,7 +12,6 @@ class User
     private Email $email;
     private string $name;
     private string $password;
-    private array $telephone = [];
 
     public function __construct(Email $email, string $password, string $name)
     {
@@ -20,6 +19,11 @@ class User
         $this->password = $password;
         $this->name = $name;
     }  
+
+    public static function withEmailPasswordName(string $email, string $password, string $name): User
+    {
+        return new User(new Email($email), $password, $name);
+    }
 
     public function getEmail(): string
     {
@@ -35,6 +39,7 @@ class User
     {
         return $this->password;
     }
+
     public function changePassword(Password $newPassword): void
     {
         $this->password = $newPassword;
@@ -43,12 +48,6 @@ class User
     public function getTelephone(): array
     {
         return $this->telephone;
-    }
-
-    public function addTelephone(string $number): void
-    {
-        $telephone = new Telephone($number);
-        $this->telephone[] = $telephone;
     }
 
     public function verifyPassword(CipherPassword $cipher, string $passwordText): bool

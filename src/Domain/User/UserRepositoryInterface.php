@@ -9,7 +9,7 @@ interface UserRepositoryInterface
 {
     public function all(): array;
 
-    public function findEmail(Email $email): User;
+    public function findEmail(Email $email);
     
     public function insert(User $user): void;
     

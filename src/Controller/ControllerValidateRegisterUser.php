@@ -35,9 +35,10 @@ class ControllerValidateRegisterUser implements RequestHandlerInterface
         }
 
         try {
-            $password = new Password($password);
             if ($password !== $confirmPassword)
                 throw new Exception("Senhas não são iguais.");
+
+            $password = new Password($password);
 
             $userDto = new RegisterUserDto(
                 $email,

@@ -2,8 +2,8 @@
 
 namespace Project\System\Application\User\RegisterUser;
 
+use Project\System\Domain\User\User;
 use Project\System\Domain\User\UserRepositoryInterface;
-use Project\System\Factory\FactoryUser;
 
 class RegisterUser
 {
@@ -16,12 +16,11 @@ class RegisterUser
 
     public function execute(RegisterUserDto $registryUser): void
     {
-        $factoryUser = new FactoryUser();
-        $user = $factoryUser->withEmailPasswordName(
+        $user = User::withEmailPasswordName(
             $registryUser->email,
             $registryUser->name,
             $registryUser->password
-        )->user();
+        );
         
         $this->repositoryUser->insert($user);
     }

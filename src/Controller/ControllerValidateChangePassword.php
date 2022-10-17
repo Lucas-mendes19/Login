@@ -39,9 +39,10 @@ class ControllerValidateChangePassword implements RequestHandlerInterface
 
         try {
             $user = $this->userRepository->findEmail(new Email($email));
-            $password = new Password($password);
             if ($password !== $confirmPassword)
                 throw new Exception("Senhas não são iguais.");
+
+            $password = new Password($password);
 
             $changePassword = new ChangePassword($this->userRepository);
             $changePassword->change($user, $password->cipher(new CipherPasswordPhp));

@@ -9,10 +9,13 @@ $subject = "Lucas > Lorraine";
 $body = ":)";
 
 $email = new SendEmailPhpMailer;
-$succes = $email->send(
-    $address,
-    $subject,
-    $body
-);
 
-echo $succes ? 'Envio Sucesso' : $email->getError();
+try {
+    $succes = $email->send(
+        $address,
+        $subject,
+        $body
+    );
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
